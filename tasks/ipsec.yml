@@ -1,0 +1,29 @@
+---
+
+- name: "Template ipsec.conf"
+  template:
+    src: "ipsec.conf.j2"
+    dest: "{{ vpn_ikev2_ipsec_conf_path }}"
+  notify: restart strongswan
+
+- name: "Copy server certificate"
+  copy:
+    content: "{{ vpn_ikev2_server_certificate }}"
+    dest: "{{ vpn_ikev2_server_certificate_file_path }}/{{ vpn_ikev2_server_certificate_file_name }}"
+  notify: restart strongswan
+
+- name: "Copy server private key"
+  copy:
+    content: "{{ vpn_ikev2_server_private_key }}"
+    dest: "{{ vpn_ikev2_server_private_key_file_path }}/{{ vpn_ikev2_server_private_key_file_name }}"
+    mode: "0600"
+  no_log: True
+  notify: restart strongswan
+
+- name: "Template ipsec.secrets"
+  template:
+    src: "ipsec.secrets.j2"
+    dest: "{{ vpn_ikev2_ipsec_secrets_path }}"
+    mode: "0600"
+  no_log: True
+  notify: restart strongswan

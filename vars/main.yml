@@ -1,0 +1,17 @@
+---
+
+vpn_ikev2_apt_required_packages:
+  - strongswan
+  - strongswan-charon
+  - libstrongswan
+  - libstrongswan-standard-plugins
+  - libcharon-extra-plugins
+
+vpn_ikev2_ipsec_conf_path: "/etc/ipsec.conf"
+vpn_ikev2_ipsec_secrets_path: "/etc/ipsec.secrets"
+
+vpn_ikev2_server_certificate_file_path: "/etc/ipsec.d/certs"
+vpn_ikev2_server_certificate_file_name: "ikev2-host.pem"
+
+vpn_ikev2_server_private_key_file_path: "/etc/ipsec.d/private"
+vpn_ikev2_server_private_key_file_name: "ikev2-host.pem"

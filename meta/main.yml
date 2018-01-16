@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Renat Nurgaliyev
+  description: Simple IKEv2 VPN Server
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+  - name: Debian
+    versions:
+    - jessie
+dependencies: []

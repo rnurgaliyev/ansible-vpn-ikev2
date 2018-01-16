@@ -1,0 +1,57 @@
+---
+
+#
+# RSA configuration. OVERRIDE THESE VALUES!
+#
+vpn_ikev2_server_common_name: "example.com"
+
+# Note these vales are not file paths, but the key strings in PEM format.
+vpn_ikev2_server_certificate: | 
+  -----BEGIN CERTIFICATE-----
+  ... insert certificate here
+  -----END CERTIFICATE-----
+
+vpn_ikev2_server_private_key: | 
+  -----BEGIN RSA PRIVATE KEY-----
+  ... insert key here
+  -----END RSA PRIVATE KEY-----
+
+# VPN Client list. Define your users here!
+#
+# EXAMPLE:
+#
+# vpn_ikev2_client_list:
+#   - login: user1
+#     password: "secret1"
+#   - login: user2
+#     password: "secret2"
+#
+vpn_ikev2_client_list: []
+
+#
+# Role configuration. Those are pretty good defaults.
+#
+vpn_ikev2_check_os: True
+vpn_ikev2_install_packages: True
+vpn_ikev2_enable_forwarding: True
+vpn_ikev2_manage_netfilter: True
+
+#
+# IPsec Dead Peer Detection. Those are pretty good defaults.
+#
+vpn_ikev2_dpdaction: "clear"
+vpn_ikev2_dpddelay: "60s"
+vpn_ikev2_dpdtimeout: "240s"
+
+#
+# Client configuration. Those are pretty good defaults.
+#
+vpn_ikev2_client_subnet: "10.255.255.0/24"
+vpn_ikev2_client_route: "0.0.0.0/0,::/0" 
+vpn_ikev2_client_dns: "8.8.8.8"
+
+#
+# Network configuration
+#
+vpn_ikev2_external_interface: "eth0"
+

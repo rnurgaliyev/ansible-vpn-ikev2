@@ -1,0 +1,13 @@
+---
+
+- name: "Check operating system name"
+  fail:
+    msg: "Only Ubuntu and Debian are supported"
+  when:
+    ansible_distribution != "Ubuntu" and ansible_distribution != "Debian" 
+
+- name: "Check operating system release"
+  fail:
+    msg: "Unsupported OS release"
+  when:
+    ansible_distribution_release != "xenial" and ansible_distribution_release != "jessie" 
