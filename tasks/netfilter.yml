@@ -1,0 +1,9 @@
+---
+
+- name: Setup Network Address Translation
+  iptables:
+    table: nat
+    chain: POSTROUTING
+    out_interface: "{{ vpn_ikev2_external_interface }}"
+    source: "{{ vpn_ikev2_client_subnet }}"
+    jump: MASQUERADE

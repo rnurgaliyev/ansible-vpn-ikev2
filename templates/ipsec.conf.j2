@@ -1,0 +1,29 @@
+config setup
+    strictcrlpolicy=no
+    uniqueids = no
+
+conn %default
+    mobike=yes
+    dpdaction={{ vpn_ikev2_dpdaction }}
+    dpddelay={{ vpn_ikev2_dpddelay }}
+    dpdtimeout={{ vpn_ikev2_dpdtimeout }}
+    fragmentation=yes
+
+conn ikev2-eap-ios
+    auto=add
+    keyexchange=ikev2
+    eap_identity=%any
+
+    left=%any
+    leftsubnet={{ vpn_ikev2_client_route }}
+    leftauth=pubkey
+    leftsendcert=always
+    leftid={{ vpn_ikev2_server_common_name }}
+    leftcert={{ vpn_ikev2_server_certificate_file_name }}
+
+    right=%any
+    rightsourceip={{ vpn_ikev2_client_subnet }}
+    rightauth=eap-mschapv2
+    rightid=%any
+    rightsendcert=never
+    rightdns={{ vpn_ikev2_client_dns }}

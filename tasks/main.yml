@@ -1,0 +1,25 @@
+---
+
+- name: "Running operating system checks"
+  include_tasks: prerequisites.yml
+  tags: ["verify_os"]
+  when: "vpn_ikev2_check_os"
+
+- name: "Installing prerequisite packages"
+  include_tasks: apt.yml
+  tags: ["apt"]
+  when: "vpn_ikev2_install_packages"
+
+- name: "Configure strongswan"
+  include_tasks: ipsec.yml
+  tags: ["ipsec"]
+
+- name: "Configure sysctl"
+  include_tasks: sysctl.yml
+  tags: ["sysctl"]
+  when: "vpn_ikev2_enable_forwarding"
+
+- name: "Configure netfilter"
+  include_tasks: netfilter.yml
+  tags: ["netfilter", "iptables"]
+  when: "vpn_ikev2_manage_netfilter"
